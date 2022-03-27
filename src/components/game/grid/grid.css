@@ -1,0 +1,14 @@
+:root {
+  --Grid-side-length: min(60vh, 90vw);
+}
+
+.Grid {
+  position: relative;
+  width: var(--Grid-side-length);
+  height: var(--Grid-side-length);
+}
+
+.Grid-row {
+  display: flex;
+  height: 5%;
+}

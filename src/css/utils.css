@@ -1,0 +1,24 @@
+.u-flex {
+    display: flex;
+}
+
+.u-flexCenter {
+    align-items: center;
+    justify-content: center;
+}
+
+.u-flexAlignItemsCenter {
+    align-items: center;
+}
+
+.u-flexJustifyCenter {
+    justify-content: center;
+}
+
+.u-fullWidth {
+    width: 100vw;
+}
+
+.u-fullHeight {
+    height: 100vh;
+}

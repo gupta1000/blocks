@@ -1,0 +1,24 @@
+:root {
+  --Square-tile-length: 90%;
+}
+
+.Square {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 10%;
+  height: 100%;
+}
+
+.Square-tile {
+  width: var(--Square-tile-length);
+  height: var(--Square-tile-length);
+  background-color: #cccccc;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.Square-tile:hover {
+  background-color: #aaaaaa;
+}
