@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./square.css";
+
 interface SquareProps {
   color?: string;
   onClick?: () => void;

@@ -1,12 +1,15 @@
 import React from "react";
 import produce from "immer";
 
+import { useParams } from "react-router-dom";
+
 import PubNub from "pubnub";
 import { usePubNub } from "pubnub-react";
 
+import Blocks from "./blocks";
 import { Grid } from "./grid";
 import { GameState, GridData, gridKeys, initGrid } from "./utils";
-import { useParams } from "react-router-dom";
+import { Piece } from "./piece";
 
 interface GameProps {
   userId: string;
@@ -104,8 +107,13 @@ export const Game: React.FC<GameProps> = (props) => {
   }, []);
 
   return (
-    <div className="u-fullWidth u-fullHeight u-flex u-flexCenter">
+    <div className="u-fullWidth u-fullHeight u-flex u-flexCenter u-flexColumn">
       <Grid grid={grid} handleTileClick={handleTileClick} />
+      <div className="u-flex u-fullWidth u-flexBetween">
+        {Array.from(Array(Blocks.pieces.length).keys()).map((v) => (
+          <Piece pieceKey={v} key={`game-piece-${v}`} color="red" />
+        ))}
+      </div>
     </div>
   );
 };

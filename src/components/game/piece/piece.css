@@ -1,0 +1,14 @@
+:root {
+  --Piece-tile-length: 90%;
+}
+
+.Piece-tile {
+  width: 24px;
+  height: 24px;
+}
+
+.Piece-tileInner {
+  width: var(--Piece-tile-length);
+  height: var(--Piece-tile-length);
+  border-radius: 2px;
+}

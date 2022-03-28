@@ -15,6 +15,14 @@
     justify-content: center;
 }
 
+.u-flexBetween {
+  justify-content: space-between;
+}
+
+.u-flexColumn {
+  flex-direction: column;
+}
+
 .u-fullWidth {
     width: 100vw;
 }
