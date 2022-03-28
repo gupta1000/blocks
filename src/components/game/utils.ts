@@ -1,9 +1,12 @@
 interface TileData {
   color?: string;
-  onClick?: () => void;
 }
 
 export type GridData = {[row: number]: {[col: number]: TileData}};
+
+export interface GameState {
+  grid: GridData;
+}
 
 export const GRID_LENGTH = 20;
 

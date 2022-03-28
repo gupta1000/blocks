@@ -4,7 +4,6 @@ import { Route, Routes } from "react-router-dom";
 
 import PubNub from "pubnub";
 import { PubNubProvider } from "pubnub-react";
-import { Chat, MessageList, MessageInput } from "@pubnub/react-chat-components";
 
 import useLocalStorage from "./hooks/useLocalStorage";
 
@@ -50,16 +49,9 @@ function App(): JSX.Element {
   return (
     <PubNubProvider client={pubnub}>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Chat {...{ currentChannel: "Default", theme: "light" }}>
-              <MessageList />
-              <MessageInput />
-            </Chat>
-          }
-        />
-        <Route path="game" element={<Game userId={userId} />} />
+        <Route index />
+        <Route path="lobby" />
+        <Route path="game/:sessionId" element={<Game userId={userId} />} />
       </Routes>
     </PubNubProvider>
   );
