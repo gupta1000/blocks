@@ -1,14 +1,15 @@
 :root {
-  --Piece-tile-length: 90%;
+  --Piece-tile-length: min(3vh, 4.5vw);
+  --Piece-tileInner-length: 90%;
 }
 
 .Piece-tile {
-  width: 24px;
-  height: 24px;
+  width: var(--Piece-tile-length);
+  height: var(--Piece-tile-length);
 }
 
 .Piece-tileInner {
-  width: var(--Piece-tile-length);
-  height: var(--Piece-tile-length);
+  width: var(--Piece-tileInner-length);
+  height: var(--Piece-tileInner-length);
   border-radius: 2px;
 }
