@@ -5,6 +5,9 @@ import { Route, Routes } from "react-router-dom";
 import PubNub from "pubnub";
 import { PubNubProvider } from "pubnub-react";
 
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
 import useLocalStorage from "./hooks/useLocalStorage";
 
 import { Game } from "./components/game";
@@ -48,11 +51,13 @@ function App(): JSX.Element {
 
   return (
     <PubNubProvider client={pubnub}>
-      <Routes>
-        <Route index />
-        <Route path="lobby" />
-        <Route path="game/:sessionId" element={<Game userId={userId} />} />
-      </Routes>
+      <DndProvider backend={HTML5Backend}>
+        <Routes>
+          <Route index />
+          <Route path="lobby" />
+          <Route path="game/:sessionId" element={<Game userId={userId} />} />
+        </Routes>
+      </DndProvider>
     </PubNubProvider>
   );
 }

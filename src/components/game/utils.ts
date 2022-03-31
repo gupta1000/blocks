@@ -1,4 +1,4 @@
-interface TileData {
+export interface TileData {
   color?: string;
 }
 

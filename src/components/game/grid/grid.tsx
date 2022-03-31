@@ -8,11 +8,14 @@ import "./grid.css";
 
 interface GridProps {
   grid: GridData;
-  handleTileClick: (r: number, c: number) => void;
+  onDropPiece: (r: number, c: number, k: number) => void;
 }
 
 export const Grid: React.FC<GridProps> = (props) => {
   const gridKeys = Array.from(Array(GRID_LENGTH).keys());
+
+  const onDropPiece = (r: number, c: number) => (k: number) =>
+    props.onDropPiece(r, c, k);
 
   const rows = gridKeys.map((i) =>
     gridKeys.map((j) => {
@@ -20,7 +23,7 @@ export const Grid: React.FC<GridProps> = (props) => {
       return (
         <Square
           {...data}
-          onClick={() => props.handleTileClick(i, j)}
+          onDropPiece={onDropPiece(i, j)}
           key={`square-${i}-${j}`}
         />
       );

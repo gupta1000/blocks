@@ -30,26 +30,9 @@ export const Game: React.FC<GameProps> = (props) => {
   const gameChannel = getChannelForGameSession(sessionId);
   const channels = [gameChannel];
 
-  const handleTileClick = (row: number, col: number) => {
-    const currentGrid = gridRef.current;
-    if (!currentGrid) {
-      return;
-    }
-
-    const newGrid = produce(currentGrid, (draft) => {
-      if (currentGrid[row][col].color) {
-        delete draft[row][col].color;
-      } else {
-        draft[row][col].color = "#444444";
-      }
-    });
-
-    setGrid(newGrid);
-
-    const newState: GameState = {
-      grid: newGrid
-    };
-    pubnub.publish({ channel: gameChannel, message: newState });
+  const setGameState = (gs: GameState) => {
+    setGrid(gs.grid);
+    pubnub.publish({ channel: gameChannel, message: gs });
   };
 
   const handleGameStateUpdate = (e: PubNub.MessageEvent) => {
@@ -106,9 +89,22 @@ export const Game: React.FC<GameProps> = (props) => {
     };
   }, []);
 
+  const handleDropPiece = (r: number, c: number, key: number) => {
+    const currentGrid = gridRef.current;
+    if (!currentGrid) {
+      return;
+    }
+
+    const newGrid = Blocks.gridWithPiece(currentGrid, r, c, key, {
+      color: "red"
+    });
+
+    setGameState({ grid: newGrid });
+  };
+
   return (
     <div className="u-fullWidth u-fullHeight u-flex u-flexCenter u-flexColumn">
-      <Grid grid={grid} handleTileClick={handleTileClick} />
+      <Grid grid={grid} onDropPiece={handleDropPiece} />
       <div className="u-flex u-fullWidth u-flexBetween">
         {Array.from(Array(Blocks.pieces.length).keys()).map((v) => (
           <Piece pieceKey={v} key={`game-piece-${v}`} color="red" />

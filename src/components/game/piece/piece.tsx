@@ -1,4 +1,5 @@
 import React from "react";
+import { useDrag } from "react-dnd";
 
 import Blocks from "../blocks";
 
@@ -11,6 +12,10 @@ interface PieceProps {
 }
 
 export const Piece: React.FC<PieceProps> = (props) => {
+  const [, dragRef] = useDrag(() => ({
+    type: "piece",
+    item: { key: props.pieceKey }
+  }));
   const piece = Blocks.pieces[props.pieceKey];
 
   const width = piece.reduce((max, row) => Math.max(row.length, max), 0);
@@ -18,7 +23,7 @@ export const Piece: React.FC<PieceProps> = (props) => {
   const colKeys = Array.from(Array(width).keys());
 
   return (
-    <div className="u-flex u-flexColumn">
+    <div ref={dragRef} className="u-flex u-flexColumn">
       {rowKeys.map((i) => {
         const row = colKeys.map((j) => {
           const backgroundColor = piece[i]?.[j] ? props.color : undefined;
